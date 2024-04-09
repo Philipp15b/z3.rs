@@ -2,7 +2,7 @@ name: Rust
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, test-ci ]
   pull_request:
     branches: [ master ]
 
@@ -88,7 +88,7 @@ jobs:
         run: echo "LIBCLANG_PATH=$((gcm clang).source -replace "clang.exe")" >> $env:GITHUB_ENV
         if: matrix.os == 'windows-latest'
       - name: Test `z3-sys` and `z3` with bundled linked Z3
-        run: cargo test --workspace --features bundled
+        run: cargo test --workspace --features bundled --verbose
 
   build_with_vcpkg_installed_z3:
     strategy:
